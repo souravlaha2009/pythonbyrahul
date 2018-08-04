@@ -1,0 +1,202 @@
+Lab 18:
+class Dog:
+    def __init__(self,breed):
+        self.breed = breed
+        
+sam = Dog(breed='Lab')
+frank = Dog(breed='Huskie')
+
+O/P
+sam.breed
+frank.breed
+
+Lab 19:
+class Dog:
+    
+    # Class Object Attribute
+    species = 'mammal'
+    
+    def __init__(self,breed,name):
+        self.breed = breed
+        self.name = name
+
+sam = Dog('Lab','Sam')
+sam.name
+
+sam.species
+
+Lab 20: Class to get the circumference 
+-------------------------------------
+class Circle:
+    pi = 3.14
+
+    # Circle gets instantiated with a radius (default is 1)
+    def __init__(self, radius=1):
+        self.radius = radius 
+        self.area = radius * radius * Circle.pi
+
+    # Method for resetting Radius
+    def setRadius(self, new_radius):
+        self.radius = new_radius
+        self.area = new_radius * new_radius * self.pi
+
+    # Method for getting Circumference
+    def getCircumference(self):
+        return self.radius * self.pi * 2
+
+
+c = Circle()
+
+print('Radius is: ',c.radius)
+print('Area is: ',c.area)
+print('Circumference is: ',c.getCircumference())
+
+
+c.setRadius(2)
+
+print('Radius is: ',c.radius)
+print('Area is: ',c.area)
+print('Circumference is: ',c.getCircumference())
+
+Lab 21:Inheritance
+
+class Animal:
+    def __init__(self):
+        print("Animal created")
+
+    def whoAmI(self):
+        print("Animal")
+
+    def eat(self):
+        print("Eating")
+
+
+class Dog(Animal):
+    def __init__(self):
+        Animal.__init__(self)
+        print("Dog created")
+
+    def whoAmI(self):
+        print("Dog")
+
+Lab 22:
+class Company:
+    def __init__(self,name):
+        self.name = name
+        print("Company Created")
+        
+    def salary(self,salary):
+        self.salary = salary
+        print("Company Salary {}".format(salary))
+        
+class Employee(Company):
+    def __init__(self):
+        Company.__init__(self,"Oracle")
+        print("Employee Created")       
+  
+        
+    def takehomesalary(self,salary):
+        self.salary = salary
+        print("Employee  Salary {}".format(salary))       
+        
+e = Employee()
+e.salary(100)
+e.takehomesalary(50)
+
+
+    def bark(self):
+        print("Woof!")
+
+
+d = Dog()
+d.whoAmI()
+d.eat()
+d.bark()
+
+Lab 23: Polymorphism:
+class Animal:
+    def __init__(self, name):    # Constructor of the class
+        self.name = name
+
+    def speak(self):              # Abstract method, defined by convention only
+        raise NotImplementedError("Subclass must implement abstract method")
+
+
+class Dog(Animal):
+    
+    def speak(self):
+        return self.name+' says Woof!'
+    
+class Cat(Animal):
+
+    def speak(self):
+        return self.name+' says Meow!'
+    
+fido = Dog('Fido')
+isis = Cat('Isis')
+
+print(fido.speak())
+print(isis.speak())
+
+
+Lab 24 Special Methods:
+--------------------
+class Book:
+    def __init__(self, title, author, pages):
+        print("A book is created")
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    def __str__(self):
+        return "Title: %s, author: %s, pages: %s" %(self.title, self.author, self.pages)
+
+    def __len__(self):
+        return self.pages
+
+    def __del__(self):
+        print("A book is destroyed")
+
+
+O/P
+----
+book = Book("Python Rocks!", "Jose Portilla", 159)
+
+#Special Methods
+print(book)
+print(len(book))
+del book
+
+
+Lab 25: System Reference count:
+----------
+import sys
+one = []
+print('At start         :', sys.getrefcount(one))
+two = one
+print('Second reference :', sys.getrefcount(one))
+del two
+print('After del        :', sys.getrefcount(one))
+
+
+Lab 26: Object Size
+--------------------
+sys_getsizeof.py
+
+import sys
+class MyClass:
+    pass
+objects = [
+    [], (), {}, 'c', 'string', b'bytes', 1, 2.3,
+    MyClass, MyClass(),
+]
+
+for obj in objects:
+    print('{:>10} : {}'.format(type(obj).__name__,
+                               sys.getsizeof(obj)))
+
+
+
+
+
+
